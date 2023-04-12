@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrance</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+      @font-face {
+        font-family: 'PT Mono';
+        src: url('fonts/PTMono-Regular.woff2') format('woff2'),
+             url('fonts/PTMono-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+    
+</head>
+<body>
+
+    <div id="floatingButton">
+        <img id="floatingButtonImage" src="img/menu_white.png" alt="Floating Button">
+      </div>
+
+    <div class="intro">
+        <p class="intro-text">Hi! Visitor from <span id="location">Pasadena</span>!<br> <br> Unmapped is a virtual exhibition platform that brings together virtual interactive artworks inspired by the creation of user data. <br> <br>A space maked by distorted experience of time, where distance is collapsed and borders fluctuate, posits borderless truths and alternative futures to help us reimagin, and sit with, the present. </p>
+
+      </div>
+    
+      <div id="topRightContainer">
+        <div id="clock">
+          <svg id="clockFace" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="12" fill="transparent" stroke="white" stroke-width="3" />
+            <line id="hourHand" x1="50" y1="50" x2="50" y2="30" stroke="white" stroke-width="3" stroke-linecap="round" />
+            <line id="minuteHand" x1="50" y1="50" x2="50" y2="30" stroke="white" stroke-width="3" stroke-linecap="round" />
+            <line id="secondHand" x1="50" y1="50" x2="50" y2="30" stroke="white" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div id="soundButton">
+        <img src="img/sound_white.png" alt="Sound Button">
+        </div>
+        </div>
+
+    <div id="customButton">
+        <img id="customButtonImage" src="img/space1_map_white.png" alt="Custom Button" />
+    </div>
+
+    <div id="boxButton">
+      <div id="controller"></div>
+        <div class="cube">
+          <div class="sideA front"></div>
+          <div class="sideA back"></div>
+          <div class="sideC right"></div>
+          <div class="sideC left"></div>
+          <div class="sideB top"></div>
+          <div class="sideB bottom"></div>
+        </div>
+      </div>
+    
+    
+    <div id="container"></div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.7/build/dat.gui.min.js"></script>
+
+
+    <video id="myVideo" style="display:none" autoplay loop muted>
+        <source src="img/vibe.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="udio/BG.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <script type="module" src="./space1.js" id="space0"></script>
+   
+
+
+    <script src="mouseMovement.js"></script>
+    <script src="boxButton.js"></script>
+    <script src="clock.js"></script>
+    <script src="introAnimation.js"></script>
+    <script src="location.js"></script>
+    <script src="keyboardCameraControl.js"></script>
+
+   
+</body>
+</html>

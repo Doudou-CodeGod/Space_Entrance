@@ -1,0 +1,348 @@
+html, body {
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+  position: fixed;
+}
+body {
+  /* background: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-left, pan-right, pan-up, pan-down;
+
+  canvas {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    /* border-radius: 50%; */
+    clip-path: circle(calc(50% - 1px));
+    /* image-rendering: pixelated; */
+  }
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#customButton {
+  position: absolute;
+  right: 2%;
+  bottom: 3%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#customButtonImage {
+  width: 250px; /* Adjust width as needed */
+  height: 250px; /* Adjust height as needed */
+}
+
+#floatingButton {
+  position: absolute;
+  top: 2%;
+  left: 3%;
+  cursor: pointer;
+  z-index: 1000; /* Increased the z-index value */
+  transition: transform 0.1s;
+}
+
+#floatingButton img {
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+}
+
+
+#topRightContainer {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  display: flex;
+  align-items: center;
+  z-index: 1000; /* Same z-index value as the floating button */
+}
+
+#clock {
+  position: relative;
+  width: 80px; /* Adjust the size as needed */
+  height: 80px; /* Adjust the size as needed */
+  margin-right: 5px; /* Add some space between the clock and the sound button */
+}
+
+#clockFace {
+  width: 100%;
+  height: 100%;
+}
+
+#soundButton {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+#soundButton img {
+  width: 40px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+}
+
+#boxButton {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  perspective: 1000px;
+  cursor: grab;
+  z-index: 9999;
+}
+            
+#boxButton:active {
+  cursor: grabbing;
+}
+
+#controller {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  /*background-color: red;*/
+  transform: translate(1300%, 700%);
+  z-index: 10000;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform-origin: (1300%,800%);
+  transform: rotateY(-40deg)rotateX(15deg)rotateZ(-5deg)scale(0.7);
+  transition: transform 0.1s;
+}
+
+.sideA {
+  position: absolute;
+  width: 550%;
+  height: 350%;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+.sideB {
+  position: absolute;
+  width: 550%;
+  height: 100%;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+.sideC {
+  position: absolute;
+  width: 100%;
+  height: 350%;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: translateZ(50px);
+  background-image: url("img/front.png");
+}
+
+.back {
+  transform: rotateY(180deg) translateZ(50px);
+  background-image: url("img/back.png");
+}
+/* Right side */
+.right {
+  transform: rotateY(90deg) translateZ(500px);
+  background-image: url("img/right.png");
+}
+
+/* Left side */
+.left {
+  transform: rotateY(-90deg) translateZ(50px);
+  background-image: url("img/left.png");
+}
+
+/* Top side */
+.top {
+  transform: rotateX(90deg) translateZ(50px);
+  background-image: url("img/top.png");
+}
+
+/* Bottom side */
+.bottom {
+  transform: rotateX(-90deg) translateZ(300px);
+  background-image: url("img/bottom.png");
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+
+.intro {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 25%;
+  height: 30%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(52, 52, 52, 0.5); /* Adjust the background color and opacity */
+  z-index: 999; /* Adjust the z-index value */
+  border-radius: 15px; 
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.5s, transform 0.5s;
+  overflow-y: auto; 
+}
+
+.intro.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.intro img {
+  width: 80%; /* Adjust width as needed */
+  height: 80%;
+  position: absolute;
+  top: 23%;
+  left: 10%;
+  
+  height: auto;
+}
+
+.intro-text {
+  font-family: 'PT Mono', monospace;
+  color: #fff; /* Adjust text color */
+  font-size: 12px; /* Adjust font size */
+  text-align: left; /* Align text */
+  position: absolute;
+  top: 55%; /* Adjust position */
+  left: 50%; /* Adjust position */
+  transform: translate(-50%, -50%);
+  width: 70%; /* Adjust width */
+  max-height: calc(80% - 10%); /* Add this line */
+  overflow-y: auto; /* Add this line */
+}
+
+#location {
+  color: rgb(251, 0, 255);
+}
+
+
+/* For screens with a width greater than 768px */
+@media screen and (min-width: 768px) {
+  .intro-text {
+    font-size: 6px;
+  }
+}
+
+/* For screens with a width greater than 1024px */
+@media screen and (min-width: 1024px) {
+  .intro-text {
+    font-size: 10px;
+  }
+}
+
+/* For screens with a width greater than 1440px */
+@media screen and (min-width: 1440px) {
+  .intro-text {
+    font-size: 14px;
+  }
+}
+
+/* For screens with a width less than 768px */
+@media screen and (max-width: 767px) {
+  #customButtonImage {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* For screens with a width between 768px and 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #customButtonImage {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* For screens with a width greater than 1024px */
+@media screen and (min-width: 1024px) {
+  #customButtonImage {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* For screens with a width less than 768px */
+@media screen and (max-width: 767px) {
+  #customButtonImage {
+    width: 100px;
+    height: 100px;
+  }
+  
+  #floatingButton img, #soundButton img {
+    width: 20px;
+    height: 20px;
+  }
+
+  #clock {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* For screens with a width between 768px and 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #customButtonImage {
+    width: 150px;
+    height: 150px;
+  }
+  
+  #floatingButton img, #soundButton img {
+    width: 30px;
+    height: 30px;
+  }
+
+  #clock {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* For screens with a width greater than 1024px */
+@media screen and (min-width: 1024px) {
+  #customButtonImage {
+    width: 250px;
+    height: 250px;
+  }
+  
+  #floatingButton img, #soundButton img {
+    width: 40px;
+    height: 40px;
+  }
+
+  #clock {
+    width: 80px;
+    height: 80px;
+  }
+}
